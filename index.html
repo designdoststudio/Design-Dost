@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Dost - Free Poster Maker</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5fb;color:#20243a}
+header{background:linear-gradient(120deg,#263fbd,#853ce0);color:white;padding:24px 16px;text-align:center}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0}
+main{max-width:850px;margin:20px auto;padding:12px}
+.panel{background:white;padding:18px;border-radius:15px;margin-bottom:16px;box-shadow:0 3px 14px #00000010}
+h2{margin-top:0;font-size:20px}
+label{display:block;font-weight:bold;margin:13px 0 6px}
+input,select{width:100%;padding:12px;border:1px solid #ccd1df;border-radius:8px;font-size:16px;background:white}
+button{border:0;border-radius:9px;padding:13px 17px;font-size:15px;font-weight:bold;cursor:pointer}
+.primary{background:#563bd1;color:white;width:100%;margin-top:14px}
+.secondary{background:#e9e7ff;color:#3923a0}
+canvas{display:block;width:100%;height:auto;border-radius:10px;background:white}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+footer{text-align:center;padding:25px;color:#777;font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🎨 Design Dost</h1>
+<p>Your Free Online Design Studio</p>
+</header>
+
+<main>
+<section class="panel">
+<h2>Create Your Poster</h2>
+
+<label>Choose Design</label>
+<select id="template">
+<option value="sale">Special Sale Poster</option>
+<option value="business">Business Advertisement</option>
+<option value="food">Food & Restaurant</option>
+<option value="event">Event Celebration</option>
+</select>
+
+<label>Heading</label>
+<input id="heading" value="SPECIAL SALE">
+
+<label>Sub Heading</label>
+<input id="subheading" value="Amazing Offers For You!">
+
+<label>Business / Brand Name</label>
+<input id="brand" value="YOUR BRAND NAME">
+
+<label>Phone Number</label>
+<input id="phone" value="0300 1234567">
+
+<label>Offer / Price</label>
+<input id="offer" value="UP TO 50% OFF">
+
+<label>Upload Your Photo (Optional)</label>
+<input id="photo" type="file" accept="image/*">
+
+<label>Background Colour</label>
+<input id="bg" type="color" value="#30218c">
+
+<button class="primary" id="update">Update Poster</button>
+</section>
+
+<section class="panel">
+<h2>Poster Preview</h2>
+<canvas id="poster" width="1080" height="1350"></canvas>
+<div class="actions">
+<button class="secondary" id="reset">Reset Design</button>
+<button class="primary" id="download">⬇ Download PNG</button>
+</div>
+</section>
+</main>
+
+<footer>
+<p>Design Dost © 2026</p>
+<p>Create • Customize • Download</p>
+</footer>
+
+<script>
+const canvas=document.getElementById("poster");
+const ctx=canvas.getContext("2d");
+let uploadedImage=null;
+
+const ids=["heading","subheading","brand","phone","offer","bg","template"];
+
+function draw(){
+const get=id=>document.getElementById(id).value;
+const type=get("template");
+const bg=get("bg");
+
+const colors={
+sale:["#30218c","#ed3b80"],
+business:["#123c55","#18a6a0"],
+food:["#71251d","#ed9636"],
+event:["#55208a","#e64d9d"]
+}[type];
+
+let grad=ctx.createLinearGradient(0,0,1080,1350);
+grad.addColorStop(0,bg || colors[0]);
+grad.addColorStop(1,colors[1]);
+
+ctx.fillStyle=grad;
+ctx.fillRect(0,0,1080,1350);
+
+// Decorative shapes
+ctx.fillStyle="rgba(255,255,255,.09)";
+ctx.beginPath();
+ctx.arc(1000,100,340,0,Math.PI*2);
+ctx.fill();
+ctx.beginPath();
+ctx.arc(50,1250,300,0,Math.PI*2);
+ctx.fill();
+
+// Top label
+ctx.fillStyle="white";
+ctx.textAlign="center";
+ctx.font="bold 34px Arial";
+ctx.fillText("DESIGN DOST PRESENTS",540,105);
+
+// Main heading
+ctx.font="bold 100px Arial";
+wrapText(get("heading"),540,300,900,115);
+
+// Subtitle
+ctx.font="42px Arial";
+wrapText(get("subheading"),540,460,850,60);
+
+// Uploaded image
+if(uploadedImage){
+const maxW=700,maxH=430;
+let ratio=Math.min(maxW/uploadedImage.width,maxH/uploadedImage.height);
+let w=uploadedImage.width*ratio;
+let h=uploadedImage.height*ratio;
+ctx.save();
+ctx.beginPath();
+ctx.roundRect((1080-w)/2,540,w,h,25);
+ctx.clip();
+ctx.drawImage(uploadedImage,(1080-w)/2,540,w,h);
+ctx.restore();
+}
+
+// Offer box
+ctx.fillStyle="white";
+ctx.beginPath();
+ctx.roundRect(100,1020,880,165,30);
+ctx.fill();
+
+ctx.fillStyle=colors[0];
+ctx.font="bold 65px Arial";
+wrapText(get("offer"),540,1120,820,70);
+
+// Brand and contact
+ctx.fillStyle="white";
+ctx.font="bold 43px Arial";
+ctx.fillText(get("brand"),540,1250);
+
+ctx.font="34px Arial";
+ctx.fillText("Contact: "+get("phone"),540,1310);
+}
+
+function wrapText(text,x,y,maxWidth,lineHeight){
+const words=text.split(" ");
+let line="";
+let lines=[];
+words.forEach(word=>{
+let test=line+word+" ";
+if(ctx.measureText(test).width>maxWidth && line){
+lines.push(line.trim());
+line=word+" ";
+}else{line=test;}
+});
+if(line)lines.push(line.trim());
+lines=lines.slice(0,3);
+const start=y-(lines.length-1)*lineHeight/2;
+lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
+}
+
+ids.forEach(id=>{
+document.getElementById(id).addEventListener("input",draw);
+});
+
+document.getElementById("photo").addEventListener("change",e=>{
+const file=e.target.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=()=>{
+uploadedImage=new Image();
+uploadedImage.onload=draw;
+uploadedImage.src=reader.result;
+};
+reader.readAsDataURL(file);
+});
+
+document.getElementById("update").onclick=draw;
+
+document.getElementById("reset").onclick=()=>{
+document.getElementById("heading").value="SPECIAL SALE";
+document.getElementById("subheading").value="Amazing Offers For You!";
+document.getElementById("brand").value="YOUR BRAND NAME";
+document.getElementById("phone").value="0300 1234567";
+document.getElementById("offer").value="UP TO 50% OFF";
+document.getElementById("bg").value="#30218c";
+document.getElementById("template").value="sale";
+document.getElementById("photo").value="";
+uploadedImage=null;
+draw();
+};
+
+document.getElementById("download").onclick=()=>{
+const link=document.createElement("a");
+link.download="Design-Dost-Poster.png";
+link.href=canvas.toDataURL("image/png");
+link.click();
+};
+
+draw();
+</script>
+</body>
+</html>
