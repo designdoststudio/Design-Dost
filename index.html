@@ -3,29 +3,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Dost - Free Poster Maker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Dost - Free Online Poster Maker</title>
+<meta name="description" content="Create beautiful free posters online in Urdu and English. Customize and download your posters instantly with Design Dost.">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f5fb;color:#20243a}
-header{background:linear-gradient(120deg,#263fbd,#853ce0);color:white;padding:24px 16px;text-align:center}
-header h1{margin:0;font-size:30px}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f3f5fc;color:#20243a}
+header{background:linear-gradient(120deg,#263fbd,#853ce0);color:white;text-align:center;padding:28px 15px}
+header h1{font-size:32px;margin:0}
 header p{margin:8px 0 0}
-main{max-width:850px;margin:20px auto;padding:12px}
-.panel{background:white;padding:18px;border-radius:15px;margin-bottom:16px;box-shadow:0 3px 14px #00000010}
-h2{margin-top:0;font-size:20px}
-label{display:block;font-weight:bold;margin:13px 0 6px}
-input,select{width:100%;padding:12px;border:1px solid #ccd1df;border-radius:8px;font-size:16px;background:white}
-button{border:0;border-radius:9px;padding:13px 17px;font-size:15px;font-weight:bold;cursor:pointer}
-.primary{background:#563bd1;color:white;width:100%;margin-top:14px}
-.secondary{background:#e9e7ff;color:#3923a0}
-canvas{display:block;width:100%;height:auto;border-radius:10px;background:white}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-footer{text-align:center;padding:25px;color:#777;font-size:13px}
+main{max-width:850px;margin:22px auto;padding:12px}
+.panel{background:white;border-radius:16px;padding:19px;margin-bottom:18px;box-shadow:0 4px 18px #18204a12}
+h2{font-size:21px;margin:0 0 15px}
+label{display:block;font-weight:bold;margin:14px 0 6px}
+input,select{width:100%;padding:13px;border:1px solid #cdd2df;border-radius:9px;font-size:16px;background:white}
+button{padding:13px;border:0;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer}
+.primary{background:#563bd1;color:white;width:100%;margin-top:15px}
+.secondary{background:#ebe8ff;color:#4025a6}
+canvas{width:100%;height:auto;display:block;border-radius:10px;background:white}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.hint{font-size:13px;color:#73798b;line-height:1.6}
+footer{text-align:center;padding:25px;color:#777}
 </style>
 </head>
 <body>
-
 <header>
 <h1>🎨 Design Dost</h1>
 <p>Your Free Online Design Studio</p>
@@ -33,17 +34,29 @@ footer{text-align:center;padding:25px;color:#777;font-size:13px}
 
 <main>
 <section class="panel">
-<h2>Create Your Poster</h2>
+<h2>✨ Create Your Poster</h2>
 
-<label>Choose Design</label>
+<label>Choose Poster Template</label>
 <select id="template">
-<option value="sale">Special Sale Poster</option>
-<option value="business">Business Advertisement</option>
+<option value="sale">Special Sale</option>
+<option value="business">Business Promotion</option>
+<option value="birthday">Birthday Celebration</option>
+<option value="wedding">Wedding Invitation</option>
 <option value="food">Food & Restaurant</option>
-<option value="event">Event Celebration</option>
+<option value="pharmacy">Pharmacy & Medical</option>
+<option value="event">Special Event</option>
+<option value="modern">Modern Advertisement</option>
+<option value="eid">Eid Mubarak</option>
+<option value="education">Education & Academy</option>
 </select>
 
-<label>Heading</label>
+<label>Poster Language</label>
+<select id="language">
+<option value="en">English</option>
+<option value="ur">اردو (Urdu)</option>
+</select>
+
+<label>Main Heading</label>
 <input id="heading" value="SPECIAL SALE">
 
 <label>Sub Heading</label>
@@ -52,19 +65,20 @@ footer{text-align:center;padding:25px;color:#777;font-size:13px}
 <label>Business / Brand Name</label>
 <input id="brand" value="YOUR BRAND NAME">
 
-<label>Phone Number</label>
-<input id="phone" value="0300 1234567">
-
 <label>Offer / Price</label>
 <input id="offer" value="UP TO 50% OFF">
 
-<label>Upload Your Photo (Optional)</label>
-<input id="photo" type="file" accept="image/*">
+<label>Contact Number</label>
+<input id="phone" value="0300 1234567">
 
-<label>Background Colour</label>
+<label>Upload Your Own Photo</label>
+<input id="photo" type="file" accept="image/*">
+<p class="hint">Choose a photo from your mobile gallery. This is optional.</p>
+
+<label>Choose Background Colour</label>
 <input id="bg" type="color" value="#30218c">
 
-<button class="primary" id="update">Update Poster</button>
+<button class="primary" id="update">✨ Update Poster</button>
 </section>
 
 <section class="panel">
@@ -74,12 +88,19 @@ footer{text-align:center;padding:25px;color:#777;font-size:13px}
 <button class="secondary" id="reset">Reset Design</button>
 <button class="primary" id="download">⬇ Download PNG</button>
 </div>
+<p class="hint">Your poster is created on your device. No account or payment required.</p>
+</section>
+
+<section class="panel">
+<h2>About Design Dost</h2>
+<p>Create, customize and download beautiful posters for your business, birthday, wedding, pharmacy, restaurant and special occasions.</p>
+<p class="hint">Design Dost — Create • Customize • Download</p>
 </section>
 </main>
 
 <footer>
 <p>Design Dost © 2026</p>
-<p>Create • Customize • Download</p>
+<p>Your Free Online Design Studio</p>
 </footer>
 
 <script>
@@ -87,107 +108,120 @@ const canvas=document.getElementById("poster");
 const ctx=canvas.getContext("2d");
 let uploadedImage=null;
 
-const ids=["heading","subheading","brand","phone","offer","bg","template"];
+const $=id=>document.getElementById(id);
 
-function draw(){
-const get=id=>document.getElementById(id).value;
-const type=get("template");
-const bg=get("bg");
-
-const colors={
+const themes={
 sale:["#30218c","#ed3b80"],
 business:["#123c55","#18a6a0"],
+birthday:["#8d277c","#f5a623"],
+wedding:["#713c50","#d5a65b"],
 food:["#71251d","#ed9636"],
-event:["#55208a","#e64d9d"]
-}[type];
+pharmacy:["#075b63","#18a5a0"],
+event:["#55208a","#e64d9d"],
+modern:["#182848","#4b6cb7"],
+eid:["#075b42","#c5a94d"],
+education:["#163c80","#39a7c9"]
+};
 
-let grad=ctx.createLinearGradient(0,0,1080,1350);
-grad.addColorStop(0,bg || colors[0]);
-grad.addColorStop(1,colors[1]);
+function wrap(text,x,y,maxWidth,lineHeight){
+let words=String(text).split(" ");
+let lines=[],line="";
+words.forEach(word=>{
+let test=line+word+" ";
+if(ctx.measureText(test).width>maxWidth&&line){
+lines.push(line.trim());line=word+" ";
+}else line=test;
+});
+if(line)lines.push(line.trim());
+lines=lines.slice(0,3);
+let start=y-(lines.length-1)*lineHeight/2;
+lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
+}
 
-ctx.fillStyle=grad;
+function draw(){
+const type=$("template").value;
+const lang=$("language").value;
+const heading=$("heading").value;
+const subtitle=$("subheading").value;
+const brand=$("brand").value;
+const offer=$("offer").value;
+const phone=$("phone").value;
+const colors=themes[type];
+const bg=$("bg").value;
+
+ctx.clearRect(0,0,1080,1350);
+
+let gradient=ctx.createLinearGradient(0,0,1080,1350);
+gradient.addColorStop(0,bg);
+gradient.addColorStop(1,colors[1]);
+ctx.fillStyle=gradient;
 ctx.fillRect(0,0,1080,1350);
 
 // Decorative shapes
-ctx.fillStyle="rgba(255,255,255,.09)";
-ctx.beginPath();
-ctx.arc(1000,100,340,0,Math.PI*2);
-ctx.fill();
-ctx.beginPath();
-ctx.arc(50,1250,300,0,Math.PI*2);
-ctx.fill();
+ctx.fillStyle="rgba(255,255,255,.10)";
+ctx.beginPath();ctx.arc(1040,100,340,0,Math.PI*2);ctx.fill();
+ctx.beginPath();ctx.arc(20,1320,300,0,Math.PI*2);ctx.fill();
 
 // Top label
-ctx.fillStyle="white";
+ctx.fillStyle="#fff";
 ctx.textAlign="center";
+ctx.direction="ltr";
 ctx.font="bold 34px Arial";
-ctx.fillText("DESIGN DOST PRESENTS",540,105);
+ctx.fillText("DESIGN DOST PRESENTS",540,100);
 
 // Main heading
-ctx.font="bold 100px Arial";
-wrapText(get("heading"),540,300,900,115);
+ctx.direction=lang==="ur"?"rtl":"ltr";
+ctx.font=lang==="ur"?"bold 85px Tahoma,Arial":"bold 96px Arial";
+wrap(heading||"YOUR HEADING",540,280,900,105);
 
 // Subtitle
-ctx.font="42px Arial";
-wrapText(get("subheading"),540,460,850,60);
+ctx.font=lang==="ur"?"44px Tahoma,Arial":"42px Arial";
+wrap(subtitle||"Your message here",540,420,900,65);
 
-// Uploaded image
+// Photo area
 if(uploadedImage){
-const maxW=700,maxH=430;
+let maxW=750,maxH=480;
 let ratio=Math.min(maxW/uploadedImage.width,maxH/uploadedImage.height);
 let w=uploadedImage.width*ratio;
 let h=uploadedImage.height*ratio;
 ctx.save();
 ctx.beginPath();
-ctx.roundRect((1080-w)/2,540,w,h,25);
+ctx.roundRect((1080-w)/2,510,w,h,25);
 ctx.clip();
-ctx.drawImage(uploadedImage,(1080-w)/2,540,w,h);
+ctx.drawImage(uploadedImage,(1080-w)/2,510,w,h);
 ctx.restore();
 }
 
 // Offer box
 ctx.fillStyle="white";
 ctx.beginPath();
-ctx.roundRect(100,1020,880,165,30);
+ctx.roundRect(90,1000,900,175,28);
 ctx.fill();
 
 ctx.fillStyle=colors[0];
-ctx.font="bold 65px Arial";
-wrapText(get("offer"),540,1120,820,70);
+ctx.font=lang==="ur"?"bold 65px Tahoma,Arial":"bold 65px Arial";
+ctx.direction=lang==="ur"?"rtl":"ltr";
+wrap(offer||"SPECIAL OFFER",540,1090,830,72);
 
-// Brand and contact
+// Brand
 ctx.fillStyle="white";
-ctx.font="bold 43px Arial";
-ctx.fillText(get("brand"),540,1250);
+ctx.font=lang==="ur"?"bold 45px Tahoma,Arial":"bold 43px Arial";
+ctx.fillText(brand||"YOUR BRAND",540,1240);
 
+// Contact
 ctx.font="34px Arial";
-ctx.fillText("Contact: "+get("phone"),540,1310);
+ctx.direction="ltr";
+ctx.fillText(phone?"Contact: "+phone:"",540,1310);
 }
 
-function wrapText(text,x,y,maxWidth,lineHeight){
-const words=text.split(" ");
-let line="";
-let lines=[];
-words.forEach(word=>{
-let test=line+word+" ";
-if(ctx.measureText(test).width>maxWidth && line){
-lines.push(line.trim());
-line=word+" ";
-}else{line=test;}
-});
-if(line)lines.push(line.trim());
-lines=lines.slice(0,3);
-const start=y-(lines.length-1)*lineHeight/2;
-lines.forEach((l,i)=>ctx.fillText(l,x,start+i*lineHeight));
-}
-
-ids.forEach(id=>{
-document.getElementById(id).addEventListener("input",draw);
+["heading","subheading","brand","offer","phone","template","language","bg"].forEach(id=>{
+$(id).addEventListener("input",draw);
 });
 
-document.getElementById("photo").addEventListener("change",e=>{
+$("photo").addEventListener("change",e=>{
 const file=e.target.files[0];
 if(!file)return;
+if(!file.type.startsWith("image/"))return;
 const reader=new FileReader();
 reader.onload=()=>{
 uploadedImage=new Image();
@@ -197,22 +231,24 @@ uploadedImage.src=reader.result;
 reader.readAsDataURL(file);
 });
 
-document.getElementById("update").onclick=draw;
+$("update").onclick=draw;
 
-document.getElementById("reset").onclick=()=>{
-document.getElementById("heading").value="SPECIAL SALE";
-document.getElementById("subheading").value="Amazing Offers For You!";
-document.getElementById("brand").value="YOUR BRAND NAME";
-document.getElementById("phone").value="0300 1234567";
-document.getElementById("offer").value="UP TO 50% OFF";
-document.getElementById("bg").value="#30218c";
-document.getElementById("template").value="sale";
-document.getElementById("photo").value="";
+$("reset").onclick=()=>{
+$("template").value="sale";
+$("language").value="en";
+$("heading").value="SPECIAL SALE";
+$("subheading").value="Amazing Offers For You!";
+$("brand").value="YOUR BRAND NAME";
+$("offer").value="UP TO 50% OFF";
+$("phone").value="0300 1234567";
+$("bg").value="#30218c";
+$("photo").value="";
 uploadedImage=null;
 draw();
 };
 
-document.getElementById("download").onclick=()=>{
+$("download").onclick=()=>{
+draw();
 const link=document.createElement("a");
 link.download="Design-Dost-Poster.png";
 link.href=canvas.toDataURL("image/png");
